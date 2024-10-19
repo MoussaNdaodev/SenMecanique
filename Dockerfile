@@ -9,9 +9,9 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     libzip-dev \
     unzip \
-    libpq-dev \                     # Ajouté pour le pilote PostgreSQL
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd zip exif pdo pdo_pgsql # Installation du pilote PDO pour PostgreSQL
+    libpq-dev && \  # Ajouté pour le pilote PostgreSQL
+    docker-php-ext-configure gd --with-freetype --with-jpeg && \
+    docker-php-ext-install gd zip exif pdo pdo_pgsql # Installation du pilote PDO pour PostgreSQL
 
 # Installer Nginx
 RUN apt-get install -y nginx
