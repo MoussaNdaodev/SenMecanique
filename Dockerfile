@@ -1,5 +1,5 @@
-# Utiliser une image de base PHP
-FROM php:8.1-fpm
+# Utiliser une image de base PHP 8.2
+FROM php:8.2-fpm
 
 # Installer les extensions et dépendances nécessaires
 RUN apt-get update && apt-get install -y \
@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     unzip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd zip
+    && docker-php-ext-install gd zip exif
 
 # Installer Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
