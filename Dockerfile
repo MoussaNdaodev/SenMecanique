@@ -28,8 +28,11 @@ RUN composer install
 # Copier le fichier de configuration Nginx
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
+# Donner les permissions nécessaires pour le stockage et le cache Laravel
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+
 # Exposer les ports pour PHP-FPM et Nginx
 EXPOSE 9000 80
 
-# Démarrer Nginx et PHP-FPM
-CMD service nginx start && php-fpm
+# Démarrer Nginx, exécuter les migrations et démarrer PHP-FPM
+CMD service nginx start && php artisan migrate --force && php-fpm
