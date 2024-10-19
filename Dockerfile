@@ -22,7 +22,7 @@ WORKDIR /var/www
 COPY . .
 
 # Installer les dépendances PHP
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install
 
 # Exposer le port 9000 pour PHP-FPM
 EXPOSE 9000
