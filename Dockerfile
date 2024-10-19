@@ -28,8 +28,9 @@ RUN composer install
 # Copier le fichier de configuration Nginx
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
-# Donner les permissions nécessaires pour le stockage et le cache Laravel
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+# Créer les répertoires storage et cache s'ils n'existent pas et ajuster les permissions
+RUN mkdir -p /var/www/storage /var/www/bootstrap/cache && \
+    chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
 # Exposer les ports pour PHP-FPM et Nginx
 EXPOSE 9000 80
