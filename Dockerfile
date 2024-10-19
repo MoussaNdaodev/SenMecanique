@@ -36,5 +36,5 @@ RUN mkdir -p /var/www/storage /var/www/bootstrap/cache && \
 # Exposer les ports pour PHP-FPM et Nginx
 EXPOSE 9000 80
 
-# Démarrer Nginx, exécuter les migrations et démarrer PHP-FPM
-CMD service nginx start && php artisan migrate --force && php-fpm
+# Démarrer Nginx et PHP-FPM dans le conteneur
+CMD service nginx start && php-fpm
